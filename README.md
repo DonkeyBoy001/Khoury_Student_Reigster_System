@@ -16,3 +16,6 @@ The system has user management and identity authentication features to ensure th
 The system's advantages include its use of GitHub's platform and tools, which provide excellent scalability and maintainability. Additionally, the use of open-source technology and communities helps promote and improve the system. Furthermore, the system's implementation offers high flexibility and customization, allowing for adjustments and optimizations based on different needs.
 
 If you're interested in this project, please visit our GitHub repository for more information and detailed documentation.
+
+
+![image](https://user-images.githubusercontent.com/91183483/232695565-ada7045a-ca8a-49fd-bfc6-01b2dce84739.png)
