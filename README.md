@@ -22,154 +22,155 @@ Login Page
 ![image](https://user-images.githubusercontent.com/91183483/232697194-05706e4c-477f-40c1-9627-afb99285aef7.png)
 
 
-## 项目介绍
-- 整体架构
-    - 后端采用python+flask+mysql的方式，未做服务器部署，可以在单机上测试运行
-    - 前端则借鉴了网上找到的前端页面模板，在此基础上修改，主要技术是html+css+js
-    - 前后端分离开发，见http接口设计.docx，使用postman等工具进行接口测试
-## 目录结构
+## Project Introduction
+- Overall structure
+
+    - The back-end adopts python+flask+mysql. There is no server deployment, and it can be tested and run on a single machine.
+
+    - The front-end draws on the front-end page template found on the Internet and is modified on this basis. The main technology is html+css+js
+
+    - Front-end and back-end separation development, see http interface design.docx, use postman and other tools for interface testing
+## directory structure
 <pre>
-app/ 项目源代码
-|--- models/ 后端模型层，用于读写数据库
-|--- validate/ 后端验证层，用于验证http请求的参数合法性
-|--- web/ 后端控制器层，用于处理http请求
-|--- __init__.py 入口函数
-|--- static/ 前端静态文件目录
-    |--- js/ 前端javascript文件
-    |--- *.html 前端html页面文件
-sql/ 建库脚本及说明、测试数据脚本
-http接口设计.docx
-前端页面模板/ 
+app/ Project Source Code
+|--- models/ Backend model layer for reading and writing databases
+|--- validate/ Backend verification layer, used to verify the validity of parameters for HTTP requests
+|--- web/ Backend controller layer for processing HTTP requests
+|--- __init__.py Entry function
+|--- static/ Frontend static file directory
+    |--- js/ Front end JavaScript file
+    |--- *.html Frontend HTML page file
+sql/ Database creation script and instructions, test data script
+httpInterface designdocx
+Frontend Page Template/ 
 </pre>
 
-## 项目环境配置
-- 下载安装mysql 8
-    - 执行 sql/建库脚本-无注释.sql
-    - 执行 sql/系统测试数据.sql
-- 下载安装python 3.7.3
+## Project Environment Configuration
+- Download and install MySQL 8
+    - Execute SQL/Database Creation Script - No Comments. SQL
+    - Execute SQL/System Test Data.sql
+- Download and install Python 3.7.3
 - IDE: pycharm community
-- 依赖第三方库（使用pipenv等工具安装）
+- Relying on third-party libraries (installed using tools such as pipenv)
     - flask
     - wtforms
     - pymysql
     - flask-login
 
-## 核心要求
-### 总体要求
-- 基于web的数据库应用系统
-- E-R图设计概念模式、导出逻辑模式
-- 设计应用系统的系统结构图，确定系统功能
-- 创建数据库和表，输入初始数据，要求每个表的记录数不得少于18条
-- 不需要连接远程数据库，直接在一个机器上即可
-- 分工可以按照学生模块、教师模块、管理员模块、前台界面、数据库设计
-- 学院的网站上找老师的信息
-- 学生信息输自己班的就行
-- 数据库表可以在PPT的基础上扩展
-- 可以在PPT的基础上增加功能，功能越完善，分数越高
-- 界面做漂亮一些
+## Core requirements
+### Overall requirements
+- Web-based database application system
+- E-R diagram design concept pattern, export logic pattern
+- Design the system structure diagram of the application system and determine its functions
+- Create databases and tables, input initial data, and require that the number of records in each table be no less than 18
+- No need to connect to a remote database, just on one machine
+- The division of labor can be based on student module, teacher module, administrator module, front-end interface, and database design
+- Finding information about teachers on the college's website
+- Just input student information to your own class
+- Database tables can be extended on the basis of PPT
+- It is possible to add features on top of PPT, and the more complete the features, the higher the score
+- Make the interface more beautiful
 
-### 角色需求描述
-- 系统交互
-    - 登录
-        - 无需注册功能
-        - 管理员以admin作为用户名，密码为固定值，不可修改
-        - 教师以教师编号为用户名，密码默认为教师编号，可修改
-        - 学生以学生编号为用户名，密码默认为学生编号，可修改
-    - 修改密码
-- 学生
-    - 查询
-        - 学生基本信息
-        - 该学生所选的各门课的成绩
-- 教师
-    - 查询
-        - 教师基本信息
-        - 所授课程基本信息
-        - 学生选课信息
-        - 所授课程所有学生的成绩
-        - 所授课程所有学生的成绩的统计结果
-        - 统计各分数段学生的成绩分布， 画出直方图和饼图。
-    - 录入
-        - 学生所选课程成绩
-    - 修改
-        - 学生所选课程成绩
-    - 删除
-        - 学生所选课程成绩
-- 管理员
-    - 查询
-        - 学生基本信息
-        - 教师基本信息
-        - 课程基本信息
-    - 录入
-        - 学生基本信息
-        - 教师基本信息
-        - 课程基本信息
-        - 专业选课信息
-    - 修改
-        - 学生基本信息
-        - 教师基本信息
-        - 课程基本信息
-    - 删除
-        - 学生基本信息
-        - 教师基本信息
-        - 课程基本信息
-        - 专业选课信息
-### 部分需求详述
-- 学生基本信息
-    - 包括学号、姓名、性别、出生年份、籍贯、已修学分、已选课程数量、加权平均学分等；其中已修学分为所有通过的课程的学分和，60分及以上即为通过；加权平均学分根据每门课的学分进行加权。
-- 教师基本信息
-    - 包括教师编号、姓名、性别、出生年份、所授课程数量等。
-- 课程基本信息
-    - 包括课程编号、课程名称、开设年份、开设学期、授课教师编号、学分、选课学生数量、平均成绩等；其中平均成绩是所有学生的成绩的算术平均值。
-- 专业基本信息
-    - 包括专业编号、专业名称等。
-- 专业选课功能说明
-    - 本系统为学生成绩管理系统，核心功能为学生成绩的管理，但是同时该系统依托于学生选课系统。
-    - 我们由此添加了简单的选课功能，遵循小次数大批量的原则，以专业为单位进行选课，若添加了一条专业选课的记录，则该专业的所有学生都将选修该门课程。
+### Role requirement description
+- System interaction
+- Login
+- No registration required
+- The administrator uses admin as the username and the password is fixed and cannot be modified
+- The teacher uses the teacher ID as the username, and the password defaults to the teacher ID, which can be modified
+- Students use their student ID as their username, and their password defaults to their student ID, which can be modified
+- Change password
+- Students
+- Query
+- Basic information of students
+- The grades of each course chosen by the student
+- Teacher
+- Query
+- Basic information of teachers
+- Basic information of the courses taught
+- Student course selection information
+- The grades of all students in the course taught
+- Statistical results of the grades of all students in the courses taught
+- Calculate the distribution of students' grades in each score segment and draw histograms and pie charts.
+- Entry
+- Student's selected course grades
+- Modify
+- Student's selected course grades
+- Delete
+- Student's selected course grades
+- Administrator
+- Query
+- Basic information of students
+- Basic information of teachers
+- Basic Course Information
+- Entry
+- Basic information of students
+- Basic information of teachers
+- Basic Course Information
+- Professional course selection information
+- Modify
+- Basic information of students
+- Basic information of teachers
+- Basic Course Information
+- Delete
+- Basic information of students
+- Basic information of teachers
+- Basic Course Information
+- Professional course selection information
+### Detailed description of some requirements
+-Basic information of students
+    - Including student ID, name, gender, year of birth, place of origin, credits taken, number of courses selected, weighted average credits, etc; Among them, the completed course is divided into the total credits of all courses passed, and a score of 60 or above is considered as passed; Weighted average credits are weighted based on the credits of each course.
+- Basic information of teachers
+    - Including teacher ID, name, gender, year of birth, number of courses taught, etc.
+- Basic Course Information
+    - Including course number, course name, year of establishment, semester of establishment, instructor number, credits, number of selected students, average grade, etc; The average score is the arithmetic mean of all students' grades.
+- Basic professional information
+    - Including professional number, professional name, etc.
+- Professional Course Selection Function Description
+    - This system is a student grade management system, with the core function of managing student grades. However, at the same time, the system relies on the student course selection system.
+    - We have added a simple course selection function, following the principle of small frequency and large batch, selecting courses based on majors. If a record of major course selection is added, all students in that major will take that course.
 
-## 编号规则
-- 学院编号：2位
-- 专业编号：
-    - 学院编号：2位
-    - 学院内专业编号：2位
-    - 共：4位
-- 班级编号：
-    - 入学年份：4位
-    - 专业编号：4位
-    - 专业内班级编号：2位
-    - 共：10位
-- 学生编号：
-    - 班级编号：10位
-    - 班级内序号：2位
-    - 共：12位
-- 教师编号：
-    - 学院编号：2位
-    - 学院内编号：3位
-    - 共：5位
-- 课程编号：5位
-- 所有数据库表的id都是用char存的，有一些id设置为了已有的最大值+1，所以在插入数据时，需要查出数据库表中已有的id，转化为整数，取最大值+1，转化为字符串，作为新的id
-
-
-## 数据库说明
+## Numbering Rules
+- College ID: 2 digits
+- Professional ID:
+- College ID: 2 digits
+- Major ID within the college: 2 digits
+- Total: 4 digits
+- Class ID:
+- Year of enrollment: 4th place
+- Professional code: 4 digits
+- Class ID within the major: 2 digits
+- Total: 10 digits
+- Student ID:
+- Class ID: 10 digits
+- Class serial number: 2 digits
+- Total: 12 digits
+- Teacher ID:
+- College ID: 2 digits
+- College ID: 3 digits
+- Total: 5 digits
+- Course ID: 5 digits
+- All database table IDs are stored in char, and some IDs are set to the existing maximum value of+1. Therefore, when inserting data, it is necessary to find the existing IDs in the database table, convert them to integers, take the maximum value of+1, convert them to strings, and use them as new IDs
+## Database Description
 数据库为: Mysql
 - 数据库用户名为: root，可在__init__.py中修改
 - 数据库密码为: asdfg13579，可在__init__.py中修改
 
-## 其它配置说明
+## Other configuration instructions
 - 端口: 6060，可在__init__.py中修改
 - 访问地址为http://localhost:6060
     - 不能用127.0.0.1，因为前端页面里面的超链接是固定的localhost，否则会引起跨域问题
 - 管理员用户名为admin，密码为asdfg13579
 - 学生和教师的初始密码均为其编号
 
-## 数据流图
+## Data flow diagram
 ![](imgs/数据流图.png)
 
-## ER图-关系模式
+## ER Diagram - Relationship Pattern
 ![](imgs/ER图.png)
 
 关系模式见sql/建库脚本
 
-## 完整性约束分析
+## Integrity constraint analysis
 ### 实体完整性约束
 - 所有的主键均不能为空，所有定义为not null的属性也不能为空。
 ### 参照完整性约束
@@ -202,18 +203,17 @@ http接口设计.docx
 | grade | 0~100之间的整数
 | credit | 1~10之间的整数
 
-### 学生选课表与触发器
-学生选课信息其实可以通过学生表、专业选课表查询得到，但由于需要存储成绩，所以新增了一张学生选课成绩表；
+### Student Course Selection Table and Trigger
+In fact, the student course selection information can be obtained through the student table and the professional course selection table, but due to the need to store the results, a new student course selection score table has been added;
 
-当专业选课表中新增一条记录时，则该专业的学生都要生成对应的选课记录；当专业选课表中删除一条记录时，则该专业的学生都要删除对应的选课记录；能直接操作该表的，只有教师修改成绩的操作；这样的约束，应由触发器实现，触发器定义见建库脚本。
+When a record is added to the major course selection schedule, the students of the major will generate a corresponding course selection record; when a record is deleted from the professional course selection schedule, the students of the major will delete the corresponding course selection record; only the teacher can directly operate the operation of modifying the score; such a constraint should be realized by the trigger, and the trigger definition
 
-当学生表增加一条记录时，则根据该学生的专业，自动添加学生选课记录；当学生表删除一条记录时，则根据该学生的专业，自动删除学生选课记录；这样的约束也应由触发器实现，触发器语句见建库脚本。
+When a record is added to the student table, the student's course selection record is automatically added according to the student's major; when a record is deleted from the student table, the student's course selection record is automatically deleted according to the student's major; such a constraint should also be implemented by the trigger, and the trigger statement is shown in the library script.
 
-由于定义了触发器，学生选课表也就不再需要设置任何的外键了。
+With the definition of triggers, students no longer need to set any foreign keys in the course schedule.
 
-
-## 效果展示
-### 登录界面
+##Display of effect
+### Login interface
 - ![](imgs/登录页面.png)
 
 ### 学生界面
@@ -273,13 +273,13 @@ http接口设计.docx
 ## 使用教程
 > 最好是在pycharm 下面执行
 
-### 本地运行
+### Local operation
 
 1. pip install -r requirements.txt
-2. 创建数据库，可以使用sql目录下的 `建库脚本-无注释.sql` ,直接在mysql中运行这个
-3. 导入测试数据，也是一个sql文件，可直接运行，`系统测试数据.sql`
-4. 配置这个flask项目的数据库
-修改app目录下的 `__init__.py` 文件，
+2. To create a database, you can use the 'Database Creation Script - Uncommented. SQL' in the SQL directory and run it directly in MySQL
+3.Import test data, which is also an SQL file that can be run directly, 'System test data.sql'`
+4. Configure the database for this Flask project
+Modify the settings in the app directory`__ Init__ Py ` file,
 
 ```python
 app.config['DATABASE_USER'] = 'django_app'  # 数据库账户
@@ -294,7 +294,7 @@ app.config['DATABASE_PORT'] = 3306  # 数据库链接端口
 python __init__.py
 ```
 
-### Docker运行
+### Docker operation
 
 1. docker build -t test:1.0 .
 2. docker run -itd --name test -p 6060:6060 -e SECRET_KEY=123455 -e DATABASE_USER=root -e DATABASE_PASSWORD=123456 -e DATABASE_HOST=172.17.0.1 -e DATABASE_NAME=grade_manage_system test:1.0
