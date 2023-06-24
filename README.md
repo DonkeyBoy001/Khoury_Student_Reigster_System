@@ -151,16 +151,20 @@ Frontend Page Template/
 - Course ID: 5 digits
 - All database table IDs are stored in char, and some IDs are set to the existing maximum value of+1. Therefore, when inserting data, it is necessary to find the existing IDs in the database table, convert them to integers, take the maximum value of+1, convert them to strings, and use them as new IDs
 ## Database Description
-数据库为: Mysql
-- 数据库用户名为: root，可在__init__.py中修改
-- 数据库密码为: asdfg13579，可在__init__.py中修改
+Database is: MySQL
+-The database username is: root, which can be found in the__ Init__ Modify in py
+-The database password is asdfg13579, which can be found in the__ Init__ Modify in py
 
 ## Other configuration instructions
-- 端口: 6060，可在__init__.py中修改
-- 访问地址为http://localhost:6060
-    - 不能用127.0.0.1，因为前端页面里面的超链接是固定的localhost，否则会引起跨域问题
-- 管理员用户名为admin，密码为asdfg13579
-- 学生和教师的初始密码均为其编号
+- Port: 6060, can be modified in __init__.py
+
+- The access address is http://localhost:6060
+
+- 127.0.0.1 cannot be used, because the hyperlink in the front page is a fixed localhost, otherwise it will cause cross-domain problems.
+
+- The administrator's user name is admin, and the password is asdfg13579
+
+- The initial passwords of students and teachers are numbered.
 
 ## Data flow diagram
 ![](imgs/数据流图.png)
@@ -168,25 +172,37 @@ Frontend Page Template/
 ## ER Diagram - Relationship Pattern
 ![](imgs/ER图.png)
 
-关系模式见sql/建库脚本
+The relationship pattern can be found in SQL/database creation script
 
 ## Integrity constraint analysis
-### 实体完整性约束
-- 所有的主键均不能为空，所有定义为not null的属性也不能为空。
-### 参照完整性约束
-- 学生表：学生表的major_id参照专业表的major_id；
-若删除某个专业，则级联删除对应学生；
-插入学生前，其所属专业必须已被创建；
-这样的约束应由外键实现；
-- 课程表：课程表的teacher_id参照教师表的teacher_id；
-若删除某个教师，则级联删除对应课程；
-插入课程前，其授课教师必须已被创建；
-这样的约束应由外键实现；
-- 专业选课表专业选课表的major_id参照专业表的major_id，专业选课表的course_id参照课程表的course_id；
-若删除某个专业，则级联删除对应的专业选课信息；
-若删除某个课程，则级联删除对应的专业选课信息；
-插入专业选课信息之前，其对应的专业和课程必须已被创建；
-这样的约束应由外键实现；
+### Entity integrity Constraints
+-All primary keys cannot be empty, and all attributes defined as not null cannot be empty.
+### Referential integrity constraints
+- Student form: the major_id of the student form refers to the major_id of the professional form;
+
+If a major is deleted, the cascade will delete the corresponding student;
+
+Before inserting a student, his major must have been created;
+
+Such a constraint should be implemented by a foreign key;
+
+- Course schedule: the teacher_id of the course schedule refers to the teacher_id of the teacher's schedule;
+
+If a teacher is deleted, the corresponding course will be deleted by cascadel;
+
+Before inserting the course, its teacher must have been created;
+
+Such a constraint should be implemented by a foreign key;
+
+- The major_id of the professional course selection schedule refers to the major_id of the professional schedule, and the course_id of the professional course schedule refers to the course_id of the course schedule;
+
+If a major is deleted, the cascadel will delete the corresponding major course selection information;
+
+If a course is deleted, the cascadel will delete the corresponding professional course selection information;
+
+Before inserting the professional course selection information, the corresponding major and course must have been created;
+
+Such a constraint should be implemented by a foreign key;
 ### 自定义完整性约束
 | 字段 | 约束 |
 | --- | --- |
@@ -216,62 +232,62 @@ With the definition of triggers, students no longer need to set any foreign keys
 ### Login interface
 - ![](imgs/登录页面.png)
 
-### 学生界面
-- 个人信息
+### Student interface
+- personal information
     - ![](imgs/学生个人信息.png)
-- 成绩
+- achievement
     - ![](imgs/学生成绩.png)
-- 修改密码
+- Change password
     - ![](imgs/学生修改密码.png)
 
-### 教师界面
-- 个人信息
+### Teacher interface
+-Personal information
     - ![](imgs/教师个人信息.png)
-- 课程列表
+-Course List
     - ![](imgs/教师课程列表.png)
-- 课程详情（学生名单及成绩）
+-Course details (student list and grades)
     - ![](imgs/教师课程详情.png)
-- 课程成绩统计
+-Course score statistics
     - ![](imgs/教师课程成绩统计.png)
-- 修改密码：同学生
+-Change password: same as student
 
-### 管理员界面
-- 学生信息
-    - 列表
+### Administrator interface
+- Student Information
+    -List
         - ![](imgs/管理员学生列表.png)
-    - 详情/修改
+    -Details/Modifications
         - ![](imgs/管理员学生详情.png)
-    - 添加
+    -Add
         - ![](imgs/管理员添加学生.png)
-- 教师信息
-    - 列表
+- Teacher Information
+    -List
         - ![](imgs/管理员教师列表.png)
-    - 详情/修改
+    -Details/Modifications
         - ![](imgs/管理员教师详情.png)
-    - 添加：略
-- 课程信息
-    - 列表
+    -Add: Omitted
+- Course Information
+    -List
         - ![](imgs/管理员课程列表.png)
-    - 详情/修改
+    -Details/Modifications
         - ![](imgs/管理员课程详情.png)
-    - 添加：略
-- 专业信息
-    - 列表
+    -Add: Omitted
+- Professional Information
+      -List
         - ![](imgs/管理员专业列表.png)
-    - 详情/修改
+      -Details/Modifications
         - ![](imgs/管理员专业详情.png)
-    - 添加：略
-- 专业选课信息
-    - 列表
+      -Add: Omitted
+- Professional course selection information
+      -List
         - ![](imgs/管理员专业选课列表.png)
-    - 详情
+        -Details
         - ![](imgs/管理员专业选课详情.png)
-    - 添加
+      -Add
         - ![](imgs/管理员添加专业选课.png)
 
 
-## 使用教程
-> 最好是在pycharm 下面执行
+## Tutorial
+> It is best to execute it under pychar
 
 ### Local operation
 
@@ -282,14 +298,14 @@ With the definition of triggers, students no longer need to set any foreign keys
 Modify the settings in the app directory`__ Init__ Py ` file,
 
 ```python
-app.config['DATABASE_USER'] = 'django_app'  # 数据库账户
-app.config['DATABASE_PASSWORD'] = '123456'  # 数据库账户的密码
-app.config['DATABASE_HOST'] = '127.0.0.1'  # 数据库地址
-app.config['DATABASE_NAME'] = 'grade_manage_system'  # 数据库名，这里最好不要改，改了就需要改创建数据库的脚本
-app.config['DATABASE_PORT'] = 3306  # 数据库链接端口
+app.config['DATABASE_USER'] = 'django_app'  # Database account
+app.config['DATABASE_PASSWORD'] = '123456'  #Password for database account
+app.config['DATABASE_HOST'] = '127.0.0.1'  # Database address
+app.config['DATABASE_NAME'] = 'grade_manage_system'  # Database name, it's best not to change it here. If you do, you need to change the script for creating the database
+app.config['DATABASE_PORT'] = 3306  # Database Link Port
 ```
 
-5. 运行app目录下的 `__init__.py` 文件
+5. Run the`__ Init__ Py ` file
 ```
 python __init__.py
 ```
