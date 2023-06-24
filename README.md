@@ -203,21 +203,21 @@ If a course is deleted, the cascadel will delete the corresponding professional 
 Before inserting the professional course selection information, the corresponding major and course must have been created;
 
 Such a constraint should be implemented by a foreign key;
-### 自定义完整性约束
-| 字段 | 约束 |
-| --- | --- |
-| major_id | 3位数字，新添加的专业编号自动生成为已有专业编号最大值+1
-| student_id | 10位数字，自动生成，新添加的学生编号由4位入学年份、3位专业编号和3位当年专业内已有学生编号最大值+1组成
-| course_id | 5位数字，新添加的课程编号自动生成为已有课程编号最大值+1
-| teacher_id | 5位数字，新添加的教师编号自动生成为已有教师编号最大值+1
-| major_name | unique，不同专业的名称不能相同
-| sex | 取值为“男”或“女”
-| semester | 取值为“春”或“秋”
-| 所有的年份 | 4位数字
-| 姓名、名称等 | 不超过20位的字符串
-| province | 不超过20位的字符串
-| grade | 0~100之间的整数
-| credit | 1~10之间的整数
+### Custom Integrity Constraint
+|Field | Constraint|
+|--- | ---|
+|Major_ ID | 3 digits, the newly added professional number will automatically be generated as the maximum value of the existing professional number+1
+|Student_ ID | 10 digits, automatically generated. The newly added student ID consists of 4 digits for the year of enrollment, 3 digits for the major, and 3 digits for the maximum number of existing student IDs within the major of the current year+1
+|Course_ ID | 5 digits, the newly added course number will automatically be generated as the maximum value of the existing course number+1
+|Teacher_ ID | 5 digits, the newly added teacher ID will automatically be generated as the maximum value of the existing teacher ID+1
+|Major_ Name | unique, names for different majors cannot be the same
+|Sex | Value taken as' male 'or' female '
+|Semester | Value taken as' spring 'or' autumn '
+|All years | 4 digits
+|Name, name, etc. | A string of no more than 20 characters
+|Province | A string that does not exceed 20 digits
+|Grade | integers between 0 and 100
+|Credit | integer between 1 and 10
 
 ### Student Course Selection Table and Trigger
 In fact, the student course selection information can be obtained through the student table and the professional course selection table, but due to the need to store the results, a new student course selection score table has been added;
