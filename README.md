@@ -159,6 +159,7 @@ Database is: MySQL
 - Port: 6060, can be modified in __init__.py
 
 - The access address is http://localhost:6060
+- Current Running address is http://khoury-system.herokuapp.com/static/Login.html
 
 - 127.0.0.1 cannot be used, because the hyperlink in the front page is a fixed localhost, otherwise it will cause cross-domain problems.
 
